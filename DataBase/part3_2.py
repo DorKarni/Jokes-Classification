@@ -1,14 +1,3 @@
-﻿
-def countQustionMark(line, counter):
-    if ("?" in line):
-        counter += 1
-    return counter
-
-def saveAsFile(_sheet, _index, _line, _speaker, _start, _end):
-    _sheet.write(_index, 3, _line)
-    _sheet.write(_index, 2, _speaker)
-    _sheet.write(_index, 1, _end)
-    _sheet.write(_index, 0, _start)
 
 def saveAsFileWithLabel(_sheet, _index, _line, _speaker, _start, _end, _label, half_joke = False):
     _sheet.write(_index, 4, _label)
@@ -109,9 +98,6 @@ for i in range(len_srt-1):    # i stand for row in 'sheet_srt'
 
                 index_write += 1
 
-
-            questionMARKJOKES = countQustionMark(line, questionMARKJOKES)
-
         # REGULAR JOKES
         else:
             if (last_line in line and index_write > 1):                     # remove double lines
@@ -143,8 +129,6 @@ for i in range(len_srt-1):    # i stand for row in 'sheet_srt'
                                     "SENTENCE")
 
                 index_write += 1
-
-            questionMARKSENTENCE = countQustionMark(line, questionMARKSENTENCE)
 
 
     last_line = line
