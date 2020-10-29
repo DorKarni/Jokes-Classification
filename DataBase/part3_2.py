@@ -26,7 +26,6 @@ import xlwt
 import csv
 
 # INPUT
-# file_name = r"C:\Users\משפחת\Downloads\אוניברסיטה\שנה ד\פרוייקט\laugh Times+srt- sorted episodes\S02E16jokes.xls"
 file_name = sys.argv[2]
 wb = xlrd.open_workbook(file_name)
 sheet_srt = wb.sheet_by_index(0)
@@ -37,7 +36,6 @@ len_srt = sheet_srt.nrows
 laugh_arr = []
 start_laugh = []
 end_laugh = []
-# with open(r"C:\Users\משפחת\Downloads\אוניברסיטה\שנה ד\פרוייקט\laugh Times+srt- sorted episodes\S02E16_jokes.csv", 'r') as file_name2:
 with open(sys.argv[1], 'r') as file_name2:
     sheet_laugh = csv.reader(file_name2)
     for row in sheet_laugh:
@@ -49,11 +47,6 @@ for row in laugh_arr:
         start_laugh.append(row[0])
         end_laugh.append(row[1])
 
-    #else:
-     #   start_laugh.append(row)
-      #  end_laugh.append(row)
-
-
 len_laugh = len(start_laugh)
 
 # OUTPUT
@@ -62,16 +55,6 @@ len_laugh = len(start_laugh)
 wb_write = xlwt.Workbook()
 sheet_all = wb_write.add_sheet('ALL', cell_overwrite_ok=True)
 index_write= 0
-
-# wb_write = xlwt.Workbook()
-# sheet_not_funny = wb_write.add_sheet('SENTENCE', cell_overwrite_ok=True)
-# index_not_funny = 0
-#
-# sheet_all_jokes = wb_write.add_sheet('ALL JOKES', cell_overwrite_ok=True)
-# index_all_jokes = 0
-#
-# sheet_best_jokes = wb_write.add_sheet('BEST JOKES', cell_overwrite_ok=True)
-# index_best_jokes = 0
 
 questionMARKJOKES = 0
 questionMARKSENTENCE = 0
@@ -103,11 +86,10 @@ for i in range(len_srt-1):    # i stand for row in 'sheet_srt'
         line = ""
         continue
 
-    # classify the srt row to 1 of 3 options: all jokes, funny jokes, simple sentences
+    # classify the srt row to 1 of 3 options: regular jokes, funny jokes, simple sentences
 
     # ALL JOKES
     start_luagh_time = float(start_laugh[index_laugh]) * 1000
-    #print(start_luagh_time)
 
     end_laugh_time = float(end_laugh[index_laugh]) * 1000
     if(sheet_srt.cell_value(i+1,0) > start_luagh_time): # -> line is a joke
@@ -167,22 +149,5 @@ for i in range(len_srt-1):    # i stand for row in 'sheet_srt'
 
     last_line = line
 
-print(index_write)
-
-# print(joke_counter)
-#print("questionMARKSENTENCE", questionMARKSENTENCE, questionMARKSENTENCE/(index_not_funny-1))
-#print("questionMARKJOKES", questionMARKJOKES, questionMARKJOKES/(index_best_jokes-1))
-# print((questionMARKSENTENCE/(index_not_funny-1))-(questionMARKJOKES/(index_best_jokes-1)))
-
 
 wb_write.save(sys.argv[3])
-# wb_write.save(r"C:\Users\משפחת\Downloads\אוניברסיטה\שנה ד\פרוייקט\laugh Times+srt- sorted episodes\S02E16_2.xls")
-
-
-
-
-# finding jokes- if this is the last line before the laugh had
-# start the next line starting time is after the laugh had started
-
-
-
