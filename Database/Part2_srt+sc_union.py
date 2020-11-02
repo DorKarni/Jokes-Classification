@@ -11,7 +11,6 @@ def saveAsFile(_sheet, _index, _line, _speaker, _start, _end):
 	
 
 # INPUT
-# file_name = r"C:\Users\משפחת\Downloads\אוניברסיטה\שנה ד\פרוייקט\laugh Times+srt- sorted episodes\S02E16jokes.xls"
 file_name = sys.argv[2]
 wb = xlrd.open_workbook(file_name)
 sheet_srt = wb.sheet_by_index(0)
@@ -22,7 +21,6 @@ len_srt = sheet_srt.nrows
 laugh_arr = []
 start_laugh = []
 end_laugh = []
-# with open(r"C:\Users\משפחת\Downloads\אוניברסיטה\שנה ד\פרוייקט\laugh Times+srt- sorted episodes\S02E16_jokes.csv", 'r') as file_name2:
 with open(sys.argv[1], 'r') as file_name2:
     sheet_laugh = csv.reader(file_name2)
     for row in sheet_laugh:
@@ -33,10 +31,6 @@ for row in laugh_arr:
     if(row != []):
         start_laugh.append(row[0])
         end_laugh.append(row[1])
-
-    #else:
-     #   start_laugh.append(row)
-      #  end_laugh.append(row)
 
 
 len_laugh = len(start_laugh)
